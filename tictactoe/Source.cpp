@@ -2,7 +2,11 @@
 #include <thread>
 using namespace std::chrono_literals;
 
-std::string colors[] = { "\033[32m" /*green*/, "\033[36m" /*cyan*/, "\033[35m" /*magenta*/ };
+namespace Colors {
+	const std::string green = "\033[32m";
+	const std::string cyan = "\033[36m";
+	const std::string magenta = "\033[35m";
+};
 
 bool verifyWin(char* sides) {
 	return (sides[0] == sides[1] && sides[0] == sides[2])
@@ -15,9 +19,9 @@ bool verifyWin(char* sides) {
 		|| (sides[2] == sides[4] && sides[2] == sides[6]);
 }
 
-bool checkTaken(int objectToFind, int Array[9]) {	
+bool checkTaken(int objectToFind, int* Array) {	
 
-	for (int i = 0; i <= 9; i++)
+	for (int i = 0; i <= 8; i++)
 	{
 		if (Array[i] == objectToFind) {
 			return true;
@@ -28,7 +32,7 @@ bool checkTaken(int objectToFind, int Array[9]) {
 }
 
 void printBoard(const char* sides) {
-	std::cout << colors[0];
+	std::cout << Colors::green;
 	std::cout << std::endl << "_________________" << std::endl;
 	for (int i = 0; i <= 8; i++)
 	{
@@ -50,7 +54,7 @@ int main() {
 
 	while (!gameFinished) {
 
-		std::cout << colors[1];
+		std::cout << Colors::cyan;
 		std::cout << (p1turn ? "Player 1, it's your turn!\n" : "Player 2, it's your turn!\n");
 		char sign = (p1turn ? 'X' : 'O');
 		printBoard(sides);
@@ -59,14 +63,14 @@ int main() {
 		std::cin >> choice;
 
 		if (choice > 9 || choice < 1) {
-			std::cout << colors[1];
+			std::cout << Colors::cyan;
 			std::cout << "That number isn't valid, please try again!" << std::endl;
 			std::this_thread::sleep_for(2s);
 			continue;
 		}
 
 		if (checkTaken(choice, taken)) {
-			std::cout << colors[1];
+			std::cout << Colors::cyan;
 			std::cout << "That number is already taken, please try again!" << std::endl;
 			std::this_thread::sleep_for(2s);
 			continue;
@@ -91,9 +95,9 @@ int main() {
 	}
 
 	printBoard(sides);
-	std::cout << colors[2];
+	std::cout << Colors::magenta;
 	std::cout << (winner == "Tie" ? "Nobody won, it was a draw!!" : ("GG, " + winner + ", you won the tictactoe game!"));
-	std::cout << colors[0] << "\n";
+	std::cout << Colors::green << "\n";
 
 	return 0;
 }
