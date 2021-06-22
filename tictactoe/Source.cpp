@@ -8,6 +8,13 @@ namespace Colors {
 	const std::string magenta = "\033[35m";
 };
 
+enum GameMode {
+	LocalMultiplayer,
+	// coming soon...
+	OnlineMultiplayer,
+	AI
+};
+
 bool verifyWin(char* sides) {
 	return (sides[0] == sides[1] && sides[0] == sides[2])
 		|| (sides[0] == sides[3] && sides[0] == sides[6])
@@ -50,8 +57,28 @@ int main() {
 	bool p1turn = true;
 	bool gameFinished = false;
 	std::string winner;
+	GameMode gameMode;
 
+	while (true) {
+		int selection;
+		std::cout << Colors::green << "Pick a game mode!\n";
+		std::cout << Colors::cyan 
+							<< "(1) Local Multiplayer\n"
+							<< "(2) Online Multiplayer\n"
+							<< "(3) AI\n";
 
+		std::cin >> selection;
+		switch (selection) {
+			case 1:
+				gameMode = LocalMultiplayer;
+				goto game;
+			default:
+				std::cout << Colors::magenta << "Online Multiplayer and AI are coming soon.\n"
+				          << "Until then, find a friend or something.\n";
+		}
+	}
+
+game: 
 	while (!gameFinished) {
 
 		std::cout << Colors::cyan;
@@ -98,6 +125,5 @@ int main() {
 	std::cout << Colors::magenta;
 	std::cout << (winner == "Tie" ? "Nobody won, it was a draw!!" : ("GG, " + winner + ", you won the tictactoe game!"));
 	std::cout << Colors::green << "\n";
-
 	return 0;
 }
