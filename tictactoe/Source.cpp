@@ -29,7 +29,6 @@ bool checkTaken(int objectToFind, int* Array) {
 	}
 
 	return false;
-
 }
 
 void printBoard(const char* sides) {
@@ -40,7 +39,7 @@ void printBoard(const char* sides) {
 		std::cout << "  " << sides[i] << "  ";
 		if ((i + 1) % 3 == 0) {
 			std::cout << std::endl << "_____|_____|_____" << std::endl;
-}
+		}
 	}
 }
 
@@ -98,7 +97,7 @@ int main() {
 	printBoard(sides);
 	std::cout << Colors::magenta;
 	std::cout << (winner == "Tie" ? "Nobody won, it was a draw!!" : ("GG, " + winner + ", you won the tictactoe game!"));
-	std::cout << Colors::green;
+	std::cout << Colors::green << "\n";
 
 	return 0;
 }
