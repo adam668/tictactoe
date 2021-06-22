@@ -17,7 +17,7 @@ bool verifyWin(char* sides) {
 
 bool checkTaken(int objectToFind, int Array[9]) {	
 
-	for (int i = 0; i <= 9; i++)
+	for (int i = 0; i <= 8; i++)
 	{
 		if (Array[i] == objectToFind) {
 			return true;
