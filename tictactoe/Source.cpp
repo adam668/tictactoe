@@ -93,7 +93,7 @@ int main() {
 
 	printBoard(sides);
 	std::cout << colors[2];
-	std::cout << (winner == "Tie" ? "Nobody won, it was a draw!" : ("GG, " + winner + ", you won the tictactoe game!"));
+	std::cout << (winner == "Tie" ? "Nobody won, it was a draw!!" : ("GG, " + winner + ", you won the tictactoe game!"));
 	std::cout << colors[0];
 
 	return 0;
