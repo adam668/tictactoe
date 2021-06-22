@@ -1,6 +1,10 @@
 #if defined (_WIN32)
 // TODO: winsock
-#elif defined(__unix__)
+//
+#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
 // TODO: unix socket
-#include <socket.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+
 #endif
+
